@@ -11,9 +11,9 @@ class Hero extends Player {
     super("Hero");
     setupStates();
     setPosition(x, y);
-    handleKey('W');
-    handleKey('A');
-    handleKey('D');
+    handleKey(LEFT);
+    handleKey(RIGHT);
+    handleKey(' ');
     setForces(0, DOWN_FORCE);
     setAcceleration(0, ACCELERATION);
     setImpulseCoefficients(DAMPENING, DAMPENING);    
@@ -95,60 +95,45 @@ class Hero extends Player {
   }
 
   void handleInput() {
-
     // check if our hero fall out of the screen, which means dead
     // "active obj is not dead" is important, or hero will die 3 times! 
     if (active.name=="dead" || active.name=="won") { return; }
     else if (getBoundingBox()[1] > screenHeight) { die(); }
+    else {
+        // we have to do it all by ourselves
+        if (keyCode == LEFT) { isKeyDown[LEFT] = true; }
+        else if (keyCode == RIGHT) { isKeyDown[RIGHT] = true; }
+    }
 
     // handle walking
-    if (isKeyDown('A')) {
+    if ( isKeyDown(LEFT) ) {
       setHorizontalFlip(true);
       addImpulse(-speedStep, 0);
       setViewDirection(-1,0);
-    } 
-    if (isKeyDown('D')) {
+    }
+    if ( isKeyDown(RIGHT) ) {
       setHorizontalFlip(false);
       addImpulse(speedStep, 0);
       setViewDirection(1,0);
     }
  
     if (active.mayChange()) {
-      if(isKeyDown('W') && active.name!="jumping" && boundaries.size()>0) {
+      if(isKeyDown(' ') && active.name!="jumping" && boundaries.size()>0) {
 
         // check if the boundary is a wall, not good enough, but works
         if ( (boundaries.size()!=1) ||
              (boundaries.get(0).minx != boundaries.get(0).maxx) ) {
-          ignore('W');
+          ignore(' ');
           detachFromAll();
           addImpulse(0, -speedHeight);
           setCurrentState("jumping");
         }
       }
-      else if (isKeyDown('A') || isKeyDown('D')) {
+      else if ( isKeyDown(LEFT) || isKeyDown(RIGHT) ) {
         setCurrentState("walking");
       } else {
         setCurrentState("standing");
       }
     }
-
-    // handle jumping, the size() show how many boundaries hero touches
-/*
-    if(isKeyDown('W') && active.name!="jumping" && boundaries.size()>0) {
-      if (boundaries.get(0).minx != boundaries.get(0).maxx) {
-        addImpulse(0, -speedHeight);
-        setCurrentState("jumping");
-      }
-    }
-    
-    if (active.mayChange()) {
-      if(isKeyDown('A') || isKeyDown('D')) {
-        setCurrentState("walking");
-      }
-      else {
-        setCurrentState("standing");
-      }
-    }
-*/
   }
 }
