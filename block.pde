@@ -24,7 +24,7 @@ abstract class SpecialBlock extends BoundedInteractor {
     // down bound, will detected overlap
     addBoundary(new Boundary(x+width/2+1,y+height/2-2,x-width/2-1,y+height/2-2));
     // left bound, will NOT detected overlap
-    addBoundary(new Boundary(x-width/2-1,y+height/2,x-width/2+1,y-height/2));
+    addBoundary(new Boundary(x-width/2-1,y+height/2,x-width/2-1,y-height/2));
     // right bound, will NOT detected overlap
     addBoundary(new Boundary(x+width/2+1,y-height/2,x+width/2+1,y+height/2));
   }
