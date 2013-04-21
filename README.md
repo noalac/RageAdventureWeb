@@ -19,6 +19,7 @@ ChangeLog
 ================
 **2013-04-21 alpha 0.2**
 Change the control key, make the HTML displaying more tidy(was helped by raoxi)
+
 **2013-04-17 alpha 0.1**
 Complete stage 1. Next stages will be created with new ideas. And the code structure may change.
 
