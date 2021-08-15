@@ -8,7 +8,7 @@ Game ideas come from ThankCreate. And this repo mainly focuses on web implementa
 More Info:
   Processing is an extension of Java, so the Processing codes can be easily packed into a Java applet or application. However, in this repo, I am using the processing.js to convert processing into JavaScript. Which can run in a "canvas" component with the support of HTML5.
 
-Please visit http://rage.sinaapp.com to start playing.(Chrome Only)
+Please visit https://jingdsun.github.io/RageAdventureWeb/index.html to start playing.(Chrome recommended)
 
 Libraries:
 - Processing.js - the sister project of Processing, designed for the web
